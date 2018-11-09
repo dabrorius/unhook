@@ -1,0 +1,93 @@
+.unhook-overlay * {
+  all: initial;
+}
+
+.unhook-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #f0f0f0;
+  padding: 3em 1em 1em 1em;
+  font-size: 36px;
+  text-align: center;
+  z-index: 2147483647;
+  font-family: OpenSans, Helvetica, sans-serif !important;
+  color: #333;
+}
+
+.unhook-logo {
+  width: 100px;
+  position: absolute;
+  left: 0.5em;
+  top: 0.5em;
+  cursor: pointer;
+}
+
+.unhook-blockedContent body {
+  visibility: hidden;
+  opacity: 0;
+}
+
+
+.unhook-splash-image {
+  height: 70vh;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+}
+
+.unhook-overrideButton, .unhook-overrideButton:hover  {
+  border: none;
+  background: none;
+  color: #aaa;
+  padding: 0.5em;
+  display: block;
+  text-decoration: underline;
+  cursor: pointer;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 12px;
+  background: none;
+  font-family: OpenSans, Helvetica, sans-serif;
+}
+
+
+
+.unhook-overlay .unhook-closeButton {
+  border-radius: 5px !important;
+  background-color: #14B694;
+  border: none;
+  color: #fff;
+  padding: 0.5em 1em;
+  cursor: pointer;
+  display: block;
+  margin: 100px auto 10px auto;
+  font: 200 20px OpenSans, 'Arial', sans-serif;
+}
+
+.unhook-overrideInstructions {
+  color: #aaa;
+  font-size: 12px;
+  margin-top: 0;
+  padding-top: 0;
+  font-family: OpenSans, Helvetica, sans-serif;
+}
+
+.unhook-progressBg {
+  width: 150px;
+  background-color: #aaa;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5px;
+  display: block;
+}
+
+.unhook-progress {
+  width: 50%;
+  height: 4px;
+  background-color: #666;
+  display: block;
+}
