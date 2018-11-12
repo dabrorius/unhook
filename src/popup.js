@@ -1,5 +1,14 @@
 const stemUrl = url => url.replace(/(https?:\/\/)?(www.)?([^\/]*).*/, "$3");
 
+function getCurrentURL() {
+  return new Promise(resolve => {
+    chrome.tabs.query({ currentWindow: true, active: true }, tabArray => {
+      const rawUrl = tabArray[0].url;
+      resolve(rawUrl);
+    });
+  });
+}
+
 var app = new Vue({
   el: "#app",
   data: {
@@ -8,14 +17,10 @@ var app = new Vue({
   },
   methods: {
     toggleUrlBlocking: function() {
-      console.log("Toggle blocking called");
-      chrome.tabs.query({ currentWindow: true, active: true }, tabArray => {
-        const rawUrl = tabArray[0].url;
-        console.log(`Raw url: ${rawUrl}`);
+      getCurrentURL().then(rawUrl => {
         const url = stemUrl(rawUrl);
         chrome.storage.sync.get({ blockList: [] }, result => {
           let { blockList } = result;
-          console.log(`:: ${url} -> ${blockList}`);
 
           const isBlocked = blockList.includes(url);
           if (isBlocked) {
@@ -23,7 +28,7 @@ var app = new Vue({
           } else {
             blockList.push(url);
           }
-          console.log(`:: ${url} -> ${blockList}`);
+
           this.isBlocked = !isBlocked;
           chrome.storage.sync.set({ blockList });
         });
@@ -31,8 +36,8 @@ var app = new Vue({
     }
   },
   mounted() {
-    chrome.tabs.query({ currentWindow: true, active: true }, tabArray => {
-      const url = stemUrl(tabArray[0].url);
+    getCurrentURL().then(rawUrl => {
+      const url = stemUrl(rawUrl);
       if (url !== "chrome:") {
         this.currentUrl = url;
       }
