@@ -1,7 +1,6 @@
 import Vue from "vue/dist/vue.js";
 import { getCurrentURL } from "./helpers/getCurrentURL";
-
-const stemUrl = url => url.replace(/(https?:\/\/)?(www.)?([^\/]*).*/, "$3");
+import { stemURL } from "./helpers/stemURL";
 
 var app = new Vue({
   el: "#app",
@@ -12,7 +11,7 @@ var app = new Vue({
   methods: {
     toggleUrlBlocking: function() {
       getCurrentURL().then(rawUrl => {
-        const url = stemUrl(rawUrl);
+        const url = stemURL(rawUrl);
         chrome.storage.sync.get({ blockList: [] }, result => {
           let { blockList } = result;
 
@@ -31,7 +30,7 @@ var app = new Vue({
   },
   mounted() {
     getCurrentURL().then(rawUrl => {
-      const url = stemUrl(rawUrl);
+      const url = stemURL(rawUrl);
       if (url !== "chrome:") {
         this.currentUrl = url;
       }
