@@ -141,6 +141,18 @@ eval("var g;\n\n// This works in non-strict mode\ng = (function() {\n\treturn th
 
 /***/ }),
 
+/***/ "./src/helpers/getCurrentURL.js":
+/*!**************************************!*\
+  !*** ./src/helpers/getCurrentURL.js ***!
+  \**************************************/
+/*! exports provided: getCurrentURL */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"getCurrentURL\", function() { return getCurrentURL; });\nfunction getCurrentURL() {\n  return new Promise(resolve => {\n    chrome.tabs.query({ currentWindow: true, active: true }, tabArray => {\n      const rawUrl = tabArray[0].url;\n      resolve(rawUrl);\n    });\n  });\n}\n\n\n//# sourceURL=webpack:///./src/helpers/getCurrentURL.js?");
+
+/***/ }),
+
 /***/ "./src/popup.js":
 /*!**********************!*\
   !*** ./src/popup.js ***!
@@ -149,7 +161,7 @@ eval("var g;\n\n// This works in non-strict mode\ng = (function() {\n\treturn th
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var vue_dist_vue_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue/dist/vue.js */ \"./node_modules/vue/dist/vue.js\");\n/* harmony import */ var vue_dist_vue_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_dist_vue_js__WEBPACK_IMPORTED_MODULE_0__);\n\n\nconst stemUrl = url => url.replace(/(https?:\\/\\/)?(www.)?([^\\/]*).*/, \"$3\");\n\nfunction getCurrentURL() {\n  return new Promise(resolve => {\n    chrome.tabs.query({ currentWindow: true, active: true }, tabArray => {\n      const rawUrl = tabArray[0].url;\n      resolve(rawUrl);\n    });\n  });\n}\n\nvar app = new vue_dist_vue_js__WEBPACK_IMPORTED_MODULE_0___default.a({\n  el: \"#app\",\n  data: {\n    currentUrl: null,\n    isBlocked: false\n  },\n  methods: {\n    toggleUrlBlocking: function() {\n      getCurrentURL().then(rawUrl => {\n        const url = stemUrl(rawUrl);\n        chrome.storage.sync.get({ blockList: [] }, result => {\n          let { blockList } = result;\n\n          const isBlocked = blockList.includes(url);\n          if (isBlocked) {\n            blockList = blockList.filter(item => item !== url);\n          } else {\n            blockList.push(url);\n          }\n\n          this.isBlocked = !isBlocked;\n          chrome.storage.sync.set({ blockList });\n        });\n      });\n    }\n  },\n  mounted() {\n    getCurrentURL().then(rawUrl => {\n      const url = stemUrl(rawUrl);\n      if (url !== \"chrome:\") {\n        this.currentUrl = url;\n      }\n      chrome.storage.sync.get({ blockList: [] }, result => {\n        const { blockList } = result;\n        this.isBlocked = blockList.includes(url);\n        console.log(result);\n      });\n    });\n  }\n});\n\n\n//# sourceURL=webpack:///./src/popup.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var vue_dist_vue_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue/dist/vue.js */ \"./node_modules/vue/dist/vue.js\");\n/* harmony import */ var vue_dist_vue_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_dist_vue_js__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _helpers_getCurrentURL__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./helpers/getCurrentURL */ \"./src/helpers/getCurrentURL.js\");\n\n\n\nconst stemUrl = url => url.replace(/(https?:\\/\\/)?(www.)?([^\\/]*).*/, \"$3\");\n\nvar app = new vue_dist_vue_js__WEBPACK_IMPORTED_MODULE_0___default.a({\n  el: \"#app\",\n  data: {\n    currentUrl: null,\n    isBlocked: false\n  },\n  methods: {\n    toggleUrlBlocking: function() {\n      Object(_helpers_getCurrentURL__WEBPACK_IMPORTED_MODULE_1__[\"getCurrentURL\"])().then(rawUrl => {\n        const url = stemUrl(rawUrl);\n        chrome.storage.sync.get({ blockList: [] }, result => {\n          let { blockList } = result;\n\n          const isBlocked = blockList.includes(url);\n          if (isBlocked) {\n            blockList = blockList.filter(item => item !== url);\n          } else {\n            blockList.push(url);\n          }\n\n          this.isBlocked = !isBlocked;\n          chrome.storage.sync.set({ blockList });\n        });\n      });\n    }\n  },\n  mounted() {\n    Object(_helpers_getCurrentURL__WEBPACK_IMPORTED_MODULE_1__[\"getCurrentURL\"])().then(rawUrl => {\n      const url = stemUrl(rawUrl);\n      if (url !== \"chrome:\") {\n        this.currentUrl = url;\n      }\n      chrome.storage.sync.get({ blockList: [] }, result => {\n        const { blockList } = result;\n        this.isBlocked = blockList.includes(url);\n        console.log(result);\n      });\n    });\n  }\n});\n\n\n//# sourceURL=webpack:///./src/popup.js?");
 
 /***/ })
 

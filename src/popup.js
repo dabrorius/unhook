@@ -1,15 +1,7 @@
 import Vue from "vue/dist/vue.js";
+import { getCurrentURL } from "./helpers/getCurrentURL";
 
 const stemUrl = url => url.replace(/(https?:\/\/)?(www.)?([^\/]*).*/, "$3");
-
-function getCurrentURL() {
-  return new Promise(resolve => {
-    chrome.tabs.query({ currentWindow: true, active: true }, tabArray => {
-      const rawUrl = tabArray[0].url;
-      resolve(rawUrl);
-    });
-  });
-}
 
 var app = new Vue({
   el: "#app",

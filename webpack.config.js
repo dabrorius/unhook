@@ -8,9 +8,6 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
     filename: "popup.js"
   },
-  // module: {
-  //   rules: [{ test: /\.html$/, use: "vue-template-loader" }]
-  // },
   plugins: [
     new HtmlWebpackPlugin({
       filename: "popup.html",
