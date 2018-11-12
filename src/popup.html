@@ -4,10 +4,14 @@
     <link rel="stylesheet" type="text/css" href="popup.css" />
   </head>
   <body>
-    <h1>Popup 2</h1>
     <div id="app">
       <p>{{ currentUrl }}</p>
-      Message: {{ message }}
+
+      <span v-if="isBlocked">This website is blocked</span>
+
+      <button v-on:click="toggleUrlBlocking">
+        <span v-if="isBlocked">Unblock</span> <span v-else>Block</span>
+      </button>
     </div>
     <script type="text/javascript" src="/libs/vue.js"></script>
     <script type="text/javascript" src="popup.js"></script>
