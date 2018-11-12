@@ -53,8 +53,6 @@ function runCheck(initialCheck) {
       );
       let isActiveAtThisTime = fromDate < d && d < toDate;
 
-      let isLicensed = true; // options.licenseKey
-
       // Check if site is blacklisted
       let isBlocked = false;
       for (let site of blockList) {
@@ -62,7 +60,7 @@ function runCheck(initialCheck) {
         isBlocked = isBlocked || regex.test(currentUrl);
       }
 
-      if (isBlocked && isLicensed && isActiveToday && isActiveAtThisTime) {
+      if (isBlocked && isActiveToday && isActiveAtThisTime) {
         if (isOverriden) {
           let untilOverrideOver =
             overrideDuration - (getTime() - lastOverriden);
@@ -80,13 +78,7 @@ function runCheck(initialCheck) {
         }
       }
 
-      if (
-        !isBlocked ||
-        !isLicensed ||
-        !isActiveToday ||
-        !isActiveAtThisTime ||
-        isOverriden
-      ) {
+      if (!isBlocked || !isActiveToday || !isActiveAtThisTime || isOverriden) {
         root.classList.remove("unhook-blockedContent");
       }
     }
