@@ -1,3 +1,5 @@
+import Vue from "vue/dist/vue.js";
+
 const stemUrl = url => url.replace(/(https?:\/\/)?(www.)?([^\/]*).*/, "$3");
 
 function getCurrentURL() {

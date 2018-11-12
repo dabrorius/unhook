@@ -16,7 +16,7 @@
       "24": "icon24.png",
       "32": "icon32.png"
     },
-    "default_popup": "src/popup.html"
+    "default_popup": "dist/popup.html"
   },
   "permissions": ["activeTab", "storage"],
   "content_scripts": [
