@@ -15,7 +15,7 @@
       "24": "icon24.png",
       "32": "icon32.png"
     },
-    "default_popup": "dist/popup.html"
+    "default_popup": "popup.html"
   },
   "permissions": ["activeTab", "storage"],
   "content_scripts": [
@@ -23,13 +23,13 @@
       "run_at": "document_start",
       "matches": ["<all_urls>"],
       "css": ["style.css"],
-      "js": ["dist/onDocumentStart.js"]
+      "js": ["onDocumentStart.js"]
     },
     {
       "run_at": "document_idle",
       "matches": ["<all_urls>"],
       "css": ["style.css"],
-      "js": ["dist/onDocumentIdle.js"]
+      "js": ["onDocumentIdle.js"]
     }
   ],
   "options_ui": {
@@ -37,13 +37,9 @@
     "open_in_tab": false
   },
   "background": {
-    "scripts": ["dist/background.js"]
+    "scripts": ["background.js"]
   },
-  "web_accessible_resources": [
-    "images/octopus.svg",
-    "images/logo.svg",
-    "font-awesome/css/font-awesome.min.css"
-  ],
+  "web_accessible_resources": ["octopus.svg", "logo.svg", "blockPage.html"],
   "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
   "applications": {
     "gecko": {

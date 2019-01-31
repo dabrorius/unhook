@@ -42,73 +42,11 @@ function runCheck(initialCheck) {
 
       if (isBlocked) {
         document.title = "Blocked";
-        document.onreadystatechange = () => {
-          if (document.readyState === "complete") {
-            console.log("Complete!");
-          }
-        };
-
-        // showPopup(300, 15);
-        // window.location = "http://www.duckduckgo.com";
-        setInterval(() => {
-          console.log("Call!");
-          // window.location = "http://www.duckduckgo.com";
-        }, 1000);
-        // window.addEventListener("load", () => console.log("LOADED!"), false);
-        window.onload = function() {
-          document.title = "Blocked";
-
-          showPopup(300, 15);
-        };
+        window.location = browser.extension.getURL("blockPage.html");
+        //showPopup(300, 15);
       } else {
         root.classList.remove("unhook-blockedContent");
       }
-
-      // let overrideDuration = options["overrideDuration"];
-      // let overrideDelay = options["overrideDelay"];
-      // let lastOverriden = localStorage.getItem("lastOverriden");
-      // let isOverriden =
-      //   lastOverriden && getTime() - lastOverriden < overrideDuration;
-      // let isActiveToday = options.activeDays[new Date().getDay()];
-
-      // let d = new Date();
-      // let activeFrom = options.activeFrom.split(":");
-      // let activeTo = options.activeTo.split(":");
-      // let fromDate = new Date(
-      //   d.getFullYear(),
-      //   d.getMonth(),
-      //   d.getDate(),
-      //   activeFrom[0],
-      //   activeFrom[1]
-      // );
-      // let toDate = new Date(
-      //   d.getFullYear(),
-      //   d.getMonth(),
-      //   d.getDate(),
-      //   activeTo[0],
-      //   activeTo[1]
-      // );
-      // let isActiveAtThisTime = fromDate < d && d < toDate;
-
-      // Check if site is blacklisted
-
-      // if (isBlocked && isActiveToday && isActiveAtThisTime) {
-      //   if (isOverriden) {
-      //     let untilOverrideOver =
-      //       overrideDuration - (getTime() - lastOverriden);
-      //     window.setTimeout(function() {
-      //       runCheck(false);
-      //     }, 1000 * untilOverrideOver);
-      //   } else {
-      //     if (initialCheck) {
-      //       window.onload = function() {
-      //         showPopup(overrideDuration, overrideDelay);
-      //       };
-      //     } else {
-      //       showPopup(overrideDuration, overrideDelay);
-      //     }
-      //   }
-      // }
     }
   );
 }
@@ -118,10 +56,10 @@ function showPopup(overrideDuration, overrideDelay) {
   let overlay = document.createElement("div");
   console.log("Creating popup");
   let logo = document.createElement("img");
-  logo.src = chrome.extension.getURL("images/logo.svg");
+  logo.src = chrome.extension.getURL("logo.svg");
   logo.className = "unhook-logo";
   logo.onclick = function() {
-    window.open("https://unhook.io");
+    window.open(browser.extension.getURL("popup.html"));
   };
   overlay.appendChild(logo);
 
@@ -131,7 +69,7 @@ function showPopup(overrideDuration, overrideDelay) {
   document.body.appendChild(overlay);
 
   let image = document.createElement("img");
-  image.src = chrome.extension.getURL("images/octopus.svg");
+  image.src = chrome.extension.getURL("octopus.svg");
   image.className = "unhook-splash-image";
   overlay.appendChild(image);
 
