@@ -1,6 +1,5 @@
 {
   "manifest_version": 2,
-
   "name": "Unhook Website Blocker",
   "description": "Unhook helps you get your social media addiction under control.",
   "version": "1.0.0",
@@ -24,7 +23,13 @@
       "run_at": "document_start",
       "matches": ["<all_urls>"],
       "css": ["style.css"],
-      "js": ["onPageLoad.js"]
+      "js": ["dist/onDocumentStart.js"]
+    },
+    {
+      "run_at": "document_idle",
+      "matches": ["<all_urls>"],
+      "css": ["style.css"],
+      "js": ["dist/onDocumentIdle.js"]
     }
   ],
   "options_ui": {
@@ -32,12 +37,17 @@
     "open_in_tab": false
   },
   "background": {
-    "scripts": ["background.js"]
+    "scripts": ["dist/background.js"]
   },
   "web_accessible_resources": [
     "images/octopus.svg",
     "images/logo.svg",
     "font-awesome/css/font-awesome.min.css"
   ],
-  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+  "applications": {
+    "gecko": {
+      "id": "filip.defar@gmail.com"
+    }
+  }
 }
