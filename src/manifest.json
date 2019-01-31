@@ -24,12 +24,6 @@
       "matches": ["<all_urls>"],
       "css": ["style.css"],
       "js": ["onDocumentStart.js"]
-    },
-    {
-      "run_at": "document_idle",
-      "matches": ["<all_urls>"],
-      "css": ["style.css"],
-      "js": ["onDocumentIdle.js"]
     }
   ],
   "options_ui": {

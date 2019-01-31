@@ -7,7 +7,6 @@ module.exports = {
     popup: "./src/popup.js",
     blockPage: "./src/blockPage.js",
     onDocumentStart: "./src/onDocumentStart.js",
-    onDocumentIdle: "./src/onDocumentIdle.js",
     background: "./src/background.js"
   },
   module: {

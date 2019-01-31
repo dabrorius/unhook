@@ -1,11 +1,12 @@
-function getTime() {
-  return new Date().getTime() / 1000;
-}
-let localStorage = window.localStorage;
+import { isWebsiteBlocked } from "./helpers/isWebsiteBlocked";
+
 var root = document.getElementsByTagName("html")[0];
 
-console.log("Running now!");
-runCheck(true);
+isWebsiteBlocked(isBlocked => {
+  if (isBlocked) {
+    window.location = browser.extension.getURL("blockPage.html");
+  }
+});
 
 function runCheck(initialCheck) {
   // Hide all content
