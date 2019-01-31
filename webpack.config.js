@@ -22,7 +22,11 @@ module.exports = {
         type: "javascript/auto"
       },
       {
-        test: /\.css|\.png|\.svg$/,
+        test: /\.css/,
+        use: ["style-loader", "css-loader"]
+      },
+      {
+        test: /\.png|\.svg$/,
         use: [
           {
             loader: "file-loader",

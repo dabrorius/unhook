@@ -1,4 +1,5 @@
 import Vue from "vue/dist/vue.js";
+import "./blockPage.css";
 
 new Vue({
   el: "#app",
