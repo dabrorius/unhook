@@ -22,7 +22,6 @@
     {
       "run_at": "document_start",
       "matches": ["<all_urls>"],
-      "css": ["style.css"],
       "js": ["onDocumentStart.js"]
     }
   ],

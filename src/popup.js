@@ -17,7 +17,8 @@ var app = new Vue({
   el: "#app",
   data: {
     currentUrl: null,
-    isBlocked: false
+    isBlocked: false,
+    override: false
   },
   methods: {
     toggleUrlBlocking: function() {
@@ -45,9 +46,10 @@ var app = new Vue({
       if (url !== "chrome:") {
         this.currentUrl = url;
       }
-      chrome.storage.sync.get({ blockList: [] }, result => {
-        const { blockList } = result;
+      chrome.storage.sync.get({ blockList: [], override: false }, result => {
+        const { blockList, override } = result;
         this.isBlocked = blockList.includes(url);
+        this.override = override;
         console.log(result);
       });
     });

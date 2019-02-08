@@ -5,8 +5,18 @@
   <body>
     <div id="app">
       <div class="central-column">
-        <h1>This website is blocked</h1>
-        <button v-on:click="override">Override</button>
+        <h1>Getting pulled in again?</h1>
+        <a
+          v-bind:style="buttonStyleObject"
+          @mousedown="startCountdown"
+          @mouseup="stopCountdown"
+          @mouseout="stopCountdown"
+        >
+          <span v-if="unlocking"> {{ counter }}% </span>
+          <span v-else>
+            Hold to unlock
+          </span>
+        </a>
         <img src="meditate.svg" class="central-image" />
       </div>
     </div>
