@@ -1,11 +1,17 @@
 <html>
   <head>
-    <title>Unhook Quick Options</title>
+    <title>Soft Blocked</title>
   </head>
   <body>
     <div id="app">
       <div class="central-column">
-        <h1>Getting pulled in again?</h1>
+        <div class="quote">
+          <q>
+            {{ quote.content }}
+          </q>
+          <div class="quote__author">{{ quote.author }}</div>
+        </div>
+
         <a
           v-bind:style="buttonStyleObject"
           @mousedown="startCountdown"

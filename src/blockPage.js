@@ -19,6 +19,25 @@ new Vue({
     },
     unlocking: function() {
       return this.counter > 0;
+    },
+    quote: function() {
+      const quotes = [
+        {
+          content:
+            "You can't cross the sea merely by standing and staring at the water.",
+          author: "Rabindranath Tagore"
+        },
+        {
+          content:
+            "Failure will never overtake me if my determination to succeed is strong enough.",
+          author: "Og Mandino"
+        },
+        {
+          content: "Without hard work, nothing grows but weeds.",
+          author: "Gordon B. Hinckley"
+        }
+      ];
+      return quotes[Math.floor(Math.random() * quotes.length)];
     }
   },
   methods: {

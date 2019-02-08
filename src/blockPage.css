@@ -6,6 +6,21 @@ body {
   color: #333;
 }
 
+.quote {
+  margin: 3rem 0 0;
+}
+
+.quote q {
+  font-size: 2rem;
+}
+
+.quote__author {
+  margin-top: 1rem;
+  color: #555;
+  border-left: 3px solid #999;
+  padding: 0.25rem 0 0.25rem 0.5rem;
+}
+
 h1 {
   margin: 0;
   text-align: center;
